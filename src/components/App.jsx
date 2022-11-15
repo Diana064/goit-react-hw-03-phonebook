@@ -9,7 +9,21 @@ export class App extends Component {
     contacts: [],
     filter: '',
   };
-
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      // console.log('Update 123456');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+  componentDidMount() {
+    console.log('componentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    const parseContacts = JSON.parse(contacts);
+    console.log(parseContacts);
+    if (parseContacts) {
+      this.setState({ contacts: parseContacts });
+    }
+  }
   formSubmitHandler = (name, number) => {
     this.setState(({ contacts }) => ({
       contacts: [...contacts, { name, number, id: nanoid() }],

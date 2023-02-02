@@ -22,7 +22,7 @@ class Form extends Component {
     this.reset();
   };
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
   render() {
     return (

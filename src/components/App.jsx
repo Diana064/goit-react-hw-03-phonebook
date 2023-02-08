@@ -53,8 +53,11 @@ export class App extends Component {
     const leaveContacts = this.state.contacts.filter(contact => {
       return contact.name !== event.target.parentNode.id;
     });
-    return this.setState({ contacts: [...leaveContacts] });
+    return this.setState(({ contacts }) => ({
+      contacts: [...contacts, ...leaveContacts],
+    }));
   };
+
   render() {
     return (
       <div className={css.container}>
